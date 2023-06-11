@@ -1,32 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
-.inputContainer {
+.input-container {
     display: flex;
 }
 
-.tagContainer {
+.tag-container {
     background-color: var(--cor-primaria1);
     border-radius: 6px 0 0 6px;
     padding: 16px 18px;
-}
-
-.tagText {
-    color: var(--cor-primaria4);
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    line-height: 1.125rem;
-    font-weight: 500;
+    color: var(--cor-primaria3);
 }
 
 .input {
     height: 50px;
+    width: 380px;
+    max-width: 100%;
     border-radius: 0 6px 6px 0;
     background-color: var(--cor-branco);
     border: 1px solid var(--cor-neutra4);
     border-left: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
     box-sizing: border-box;
     padding: 16px;
     color: var(--cor-preto);
@@ -40,42 +30,39 @@
     outline: none;
 }
 
-.botaoProsseguir {
+.botao-input {
     background-color: var(--cor-primaria2);
     color: var(--cor-branco);
     border-radius: 6px;
     padding: 16px 28px;
     margin-left: 16px;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.125rem;
     border: none;
     cursor: pointer;
 }
 
-.botaoProsseguir:hover {
+.botao-input:hover {
     background-color: var(--cor-primaria3);
     transition: 0.3s;
 }
 
 @media screen and (max-width: 768px) {
-    .inputContainer {
+    .input-container {
         flex-direction: column;
         align-items: center;
     }
 
     .input {
+        width: 100%;
         border-radius: 6px;
         border: 1px solid var(--cor-neutra4);
         margin: 16px 0;
     }
 
-    .tagContainer {
+    .tag-container {
         border-radius: 6px;
     }
 
-    .botaoProsseguir {
+    .botao-input {
         margin-left: 0;
     }
 }

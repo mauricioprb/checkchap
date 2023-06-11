@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
-
 .footer {
     background-color: var(--cor-neutra2);
     color: var(--cor-neutra5);
@@ -13,9 +11,6 @@
 }
 
 .texto {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
     padding: 16px;
 }
 
