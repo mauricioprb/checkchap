@@ -1,0 +1,18 @@
+:root {
+    /* Primárias */
+    --cor-primaria1: #CFF4FC;
+    --cor-primaria2: #087990;
+    --cor-primaria3: #055160;
+    --cor-primaria4: #032830;
+
+    /* Neutras */
+    --cor-neutra1: #F8F9FA;
+    --cor-neutra2: #E9ECEF;
+    --cor-neutra3: #DEE2E6;
+    --cor-neutra4: #ADB5BD;
+    --cor-neutra5: #6C757D;
+    --cor-neutra6: #343A40;
+
+    --cor-preto: #000000;
+    --cor-branco: #FFFFFF;
+}
