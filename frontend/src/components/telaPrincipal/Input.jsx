@@ -4,6 +4,9 @@ import styles from '../../css/telaPrincipal/Input.module.css';
 const Input = () => {
     return (
         <div className={styles.inputContainer}>
+            <div className={styles.tagContainer}>
+                <span className={styles.tagText}>checkchap.tech/</span>
+            </div>
             <input
                 className={styles.input}
                 type="text"

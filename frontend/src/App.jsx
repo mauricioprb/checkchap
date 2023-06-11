@@ -2,10 +2,11 @@ import React from 'react';
 import './css/util/cores.modules.css';
 import styles from './css/App.module.css';
 import Input from './components/telaPrincipal/Input';
+import Footer from './components/telaPrincipal/Footer';
 
 const App = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <div className={styles.conteudoPrincipal}>
         <div className={styles.titulo}>
           <h1>CHECK<span>CHAP</span></h1>
@@ -15,6 +16,7 @@ const App = () => {
           <Input />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
