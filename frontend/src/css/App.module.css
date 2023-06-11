@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-@import url('./util/cores.modules.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-.titulo {
-    font-family: 'Inter', sans-serif;
-    font-weight: bold;
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.conteudoPrincipal {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,21 +16,46 @@
     height: 100vh;
 }
 
+.titulo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+
 .titulo h1 {
     color: var(--cor-primaria4);
-
     font-size: 72px;
     text-align: center;
     margin-bottom: 16px;
-    color: var(--cor-primaria4);
 }
 
 .titulo h3 {
     font-size: 28px;
     text-align: center;
+    margin-bottom: 48px;
     color: var(--cor-neutra5);
 }
 
 .titulo span {
     color: var(--cor-primaria2);
+}
+
+@media screen and (max-width: 768px) {
+    .titulo h1 {
+        font-size: 48px;
+    }
+
+    .titulo h3 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .titulo h1 {
+        font-size: 36px;
+    }
+
+    .titulo h3 {
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
 }
