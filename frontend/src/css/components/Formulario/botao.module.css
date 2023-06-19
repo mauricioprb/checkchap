@@ -1,0 +1,21 @@
+.botao {
+    background-color: var(--cor-primaria2);
+    color: var(--cor-branco);
+    border-radius: 6px;
+    padding: 16px 28px;
+    margin-left: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background-color: var(--cor-primaria3);
+    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    .botao {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

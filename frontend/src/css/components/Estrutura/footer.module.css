@@ -1,0 +1,25 @@
+.footer {
+    background-color: var(--cor-neutra2);
+    color: var(--cor-neutra5);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto {
+    padding: 16px;
+}
+
+.texto .copyright {
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        position: inherit;
+    }
+}

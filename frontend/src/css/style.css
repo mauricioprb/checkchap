@@ -1,0 +1,17 @@
+/* Úteis */
+@import url('./util/cores.css');
+@import url('./util/tipografia.css');
+
+/* Globais */
+@import url('./global/reset.css');
+
+/* Componentes */
+@import url('./components/Formulario/botao.module.css');
+
+@import url('./components/Estrutura/card-info.module.css');
+
+@import url('./components/Estrutura/footer.module.css');
+
+@import url('./components/Paginas/pagina-principal.module.css');
+
+@import url('./components/Paginas/pagina-checklists.module.css');

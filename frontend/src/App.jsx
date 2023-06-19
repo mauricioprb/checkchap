@@ -1,13 +1,17 @@
-import React from 'react';
-import styles from './css/App.module.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import PaginaPrincipal from "./components/Paginas/PaginaPrincipal";
+import PaginaChecklists from "./components/Paginas/PaginaChecklists";
 
-function App() {
+const App = () => {
   return (
-    <div className={styles.titulo}>
-      <h1>CHECK<span>CHAP</span></h1>
-      <h3>Crie checklists de forma <span>ágil e intuitiva.</span></h3>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<PaginaPrincipal />} />
+        <Route path="/checklists" element={<PaginaChecklists />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
