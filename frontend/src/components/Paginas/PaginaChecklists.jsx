@@ -1,76 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
+import ChecklistItem from "../Formulario/ChecklistItem";
+import ChecklistInput from "../Formulario/ChecklistInput";
+import { useChecklist } from "../../Hooks/useChecklist";
 
 const PaginaChecklists = () => {
-  const [itensChecklist, setItensChecklist] = useState([]);
-  const [novoItemTexto, setNovoItemTexto] = useState("");
-  const [indiceEdicao, setIndiceEdicao] = useState(-1);
-  const [titulo, setTitulo] = useState("");
-  const [indiceEdicaoTitulo, setIndiceEdicaoTitulo] = useState(-1);
-  const [editandoNovoItem, setEditandoNovoItem] = useState(false);
-
-  const handleInputChange = (e) => {
-    setNovoItemTexto(e.target.value);
-  };
-
-  const handleInputKeyDown = (e) => {
-    if (e.key === "Enter" && novoItemTexto.trim() !== "") {
-      setItensChecklist((itensAnteriores) => [
-        ...itensAnteriores,
-        { texto: novoItemTexto, marcado: false },
-      ]);
-      setNovoItemTexto("");
-    }
-  };
-
-  const handleCheckboxChange = (indice) => {
-    setItensChecklist((itensAnteriores) => {
-      const itensAtualizados = [...itensAnteriores];
-      itensAtualizados[indice].marcado = !itensAtualizados[indice].marcado;
-      return itensAtualizados;
-    });
-  };
-
-  const handleTextoClique = (indice) => {
-    setIndiceEdicao(indice);
-  };
-
-  const handleTextoBlur = () => {
-    setIndiceEdicao(-1);
-  };
-
-  const handleTextoChange = (e, indice) => {
-    const itensAtualizados = [...itensChecklist];
-    itensAtualizados[indice].texto = e.target.value;
-    setItensChecklist(itensAtualizados);
-  };
-
-  const handleTituloClique = () => {
-    setIndiceEdicaoTitulo(0);
-  };
-
-  const handleTituloBlur = () => {
-    setIndiceEdicaoTitulo(-1);
-  };
-
-  const handleTituloChange = (e) => {
-    setTitulo(e.target.value);
-  };
-
-  const handleNovoItemFoco = () => {
-    setEditandoNovoItem(true);
-  };
-
-  const handleNovoItemBlur = () => {
-    setEditandoNovoItem(false);
-  };
+  const {
+    itensChecklist,
+    novoItemTexto,
+    indiceEdicao,
+    titulo,
+    indiceEdicaoTitulo,
+    editandoNovoItem,
+    handleInputChange,
+    handleInputKeyDown,
+    handleCheckboxChange,
+    handleTextoClique,
+    handleTextoBlur,
+    handleTextoChange,
+    handleTituloClique,
+    handleTituloBlur,
+    handleTituloChange,
+    handleNovoItemFoco,
+    handleNovoItemBlur,
+  } = useChecklist();
 
   return (
-    <div
-      style={{
-        maxWidth: "546px",
-        padding: "48px",
-      }}
-    >
+    <div className="pagina-checklists">
       {indiceEdicaoTitulo === 0 ? (
         <input
           type="text"
@@ -86,42 +41,27 @@ const PaginaChecklists = () => {
 
       <ul>
         {itensChecklist.map((item, indice) => (
-          <li key={indice}>
-            <input
-              type="checkbox"
-              checked={item.marcado}
-              onChange={() => handleCheckboxChange(indice)}
-            />
-            {indiceEdicao === indice ? (
-              <input
-                type="text"
-                value={item.texto}
-                autoFocus
-                onBlur={handleTextoBlur}
-                onChange={(e) => handleTextoChange(e, indice)}
-              />
-            ) : (
-              <span onClick={() => handleTextoClique(indice)}>
-                {item.texto}
-              </span>
-            )}
-          </li>
+          <ChecklistItem
+            key={indice}
+            item={item}
+            indice={indice}
+            indiceEdicao={indiceEdicao}
+            handleCheckboxChange={handleCheckboxChange}
+            handleTextoClique={handleTextoClique}
+            handleTextoBlur={handleTextoBlur}
+            handleTextoChange={handleTextoChange}
+          />
         ))}
       </ul>
 
-      {editandoNovoItem ? (
-        <input
-          type="text"
-          value={novoItemTexto}
-          placeholder="Adicionar item"
-          onChange={handleInputChange}
-          onKeyDown={handleInputKeyDown}
-          onBlur={handleNovoItemBlur}
-          autoFocus
-        />
-      ) : (
-        <p onClick={handleNovoItemFoco}>Adicionar item</p>
-      )}
+      <ChecklistInput
+        novoItemTexto={novoItemTexto}
+        editandoNovoItem={editandoNovoItem}
+        handleInputChange={handleInputChange}
+        handleInputKeyDown={handleInputKeyDown}
+        handleNovoItemFoco={handleNovoItemFoco}
+        handleNovoItemBlur={handleNovoItemBlur}
+      />
     </div>
   );
 };
