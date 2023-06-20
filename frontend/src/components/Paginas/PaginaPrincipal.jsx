@@ -1,9 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Botao from "../Formulario/Botao";
 import CardInfo from "../Estrutura/CardInfo";
 import Footer from "../Estrutura/Footer";
 
 const PaginaPrincipal = () => {
+  const navigate = useNavigate();
+  const [url, setUrl] = useState("");
+
+  const handleProsseguir = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/${url}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+      if (response.ok) {
+        console.log(response); // Exibir a resposta no console
+        response.json().then((data) => {
+          const { url: checklistUrl, idUrl } = data;
+        });
+
+        navigate(`/${checklistUrl}`);
+      } else {
+        const response = await fetch("http://localhost:8080/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url }),
+        });
+      }
+    } catch (error) {
+      console.error("API request failed:", error);
+    }
+  };
+
+  const handleUrlChange = (event) => {
+    setUrl(event.target.value);
+  };
+
   return (
     <div className="layout">
       <div className="main">
@@ -22,8 +60,10 @@ const PaginaPrincipal = () => {
               className={"input fonte-regular-m"}
               type="text"
               placeholder="Link único para a página"
+              value={url}
+              onChange={handleUrlChange}
             />
-            <Botao texto="Prosseguir" />
+            <Botao texto="Prosseguir" onClick={handleProsseguir} />
           </div>
         </div>
         <span className="divisor"></span>

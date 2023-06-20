@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ChecklistItem from "../Formulario/ChecklistItem";
 import ChecklistInput from "../Formulario/ChecklistInput";
 import { useChecklist } from "../../Hooks/useChecklist";
@@ -22,7 +22,22 @@ const PaginaChecklists = () => {
     handleTituloChange,
     handleNovoItemFoco,
     handleNovoItemBlur,
+    handlePostTitulo,
   } = useChecklist();
+  console.log(idUrl);
+  useEffect(() => {
+    const salvarTitulo = async () => {
+      try {
+        await handlePostTitulo(titulo, idUrl);
+      } catch (error) {
+        console.error("API request failed:", error);
+      }
+    };
+
+    if (indiceEdicaoTitulo === 0 && titulo !== "") {
+      salvarTitulo();
+    }
+  }, [handlePostTitulo, indiceEdicaoTitulo, titulo]);
 
   return (
     <div className="pagina-checklists">

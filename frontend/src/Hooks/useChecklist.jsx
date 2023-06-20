@@ -64,6 +64,29 @@ export const useChecklist = () => {
     setEditandoNovoItem(false);
   };
 
+  const handlePostTitulo = async (titulo, idUrl) => {
+    console.log(idUrl);
+    try {
+      const response = await fetch("http://localhost:8080/tarefa", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ titulo, idUrl }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const { url: checklistUrl } = data;
+        console.log("Título salvo com sucesso:", checklistUrl);
+      } else {
+        console.error("Falha ao salvar o título");
+      }
+    } catch (error) {
+      console.error("API request failed:", error);
+    }
+  };
+
   return {
     itensChecklist,
     novoItemTexto,
@@ -82,5 +105,6 @@ export const useChecklist = () => {
     handleTituloChange,
     handleNovoItemFoco,
     handleNovoItemBlur,
+    handlePostTitulo, // Adicionado handlePostTitulo ao retorno do hook
   };
 };
