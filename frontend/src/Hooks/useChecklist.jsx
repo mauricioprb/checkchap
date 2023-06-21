@@ -65,22 +65,37 @@ export const useChecklist = () => {
   };
 
   const handlePostTitulo = async (titulo, idUrl) => {
-    console.log(idUrl);
     try {
-      const response = await fetch("http://localhost:8080/tarefa", {
+      const response = await fetch(`http://localhost:8080/${idUrl}/titulo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ titulo, idUrl }),
+        body: JSON.stringify({ titulo }),
+      });
+
+      if (!response.ok) {
+        console.error("Falha ao salvar o título");
+      }
+    } catch (error) {
+      console.error("API request failed:", error);
+    }
+  };
+
+  const getItensTarefa = async (idTarefa) => {
+    try {
+      const response = await fetch(`http://localhost:8080/${idTarefa}/itens`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       if (response.ok) {
         const data = await response.json();
-        const { url: checklistUrl } = data;
-        console.log("Título salvo com sucesso:", checklistUrl);
+        return data.itens;
       } else {
-        console.error("Falha ao salvar o título");
+        console.error("Falha ao obter os itens da tarefa");
       }
     } catch (error) {
       console.error("API request failed:", error);
@@ -105,6 +120,7 @@ export const useChecklist = () => {
     handleTituloChange,
     handleNovoItemFoco,
     handleNovoItemBlur,
-    handlePostTitulo, // Adicionado handlePostTitulo ao retorno do hook
+    handlePostTitulo,
+    getItensTarefa,
   };
 };

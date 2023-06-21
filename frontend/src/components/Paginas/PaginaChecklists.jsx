@@ -24,11 +24,11 @@ const PaginaChecklists = () => {
     handleNovoItemBlur,
     handlePostTitulo,
   } = useChecklist();
-  console.log(idUrl);
+
   useEffect(() => {
     const salvarTitulo = async () => {
       try {
-        await handlePostTitulo(titulo, idUrl);
+        await handlePostTitulo(titulo);
       } catch (error) {
         console.error("API request failed:", error);
       }

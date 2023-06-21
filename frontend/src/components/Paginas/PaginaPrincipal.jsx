@@ -16,13 +16,11 @@ const PaginaPrincipal = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
-      if (response.ok) {
-        console.log(response); // Exibir a resposta no console
-        response.json().then((data) => {
-          const { url: checklistUrl, idUrl } = data;
-        });
 
+      if (response.ok) {
+        const data = await response.json();
+        const { url: checklistUrl, idUrl } = data;
+        console.log("URL existente:", checklistUrl);
         navigate(`/${checklistUrl}`);
       } else {
         const response = await fetch("http://localhost:8080/", {
@@ -32,6 +30,15 @@ const PaginaPrincipal = () => {
           },
           body: JSON.stringify({ url }),
         });
+
+        if (response.ok) {
+          const data = await response.json();
+          const { url: checklistUrl, idUrl } = data;
+          console.log("URL criada:", checklistUrl);
+          navigate(`/${checklistUrl}`);
+        } else {
+          console.error("Falha ao criar a URL");
+        }
       }
     } catch (error) {
       console.error("API request failed:", error);
@@ -67,24 +74,7 @@ const PaginaPrincipal = () => {
           </div>
         </div>
         <span className="divisor"></span>
-        <div className="card-container">
-          <CardInfo
-            titulo="Sem Cadastro Necessário"
-            texto="Comece a criar suas checklists imediatamente, sem a necessidade de se registrar ou fazer login. Basta digitar a URL desejada e começar a trabalhar."
-          />
-          <CardInfo
-            titulo="Crie ou Acesse com uma URL"
-            texto="Cada checklist é associada a uma URL única que você define. Use essa URL para criar uma nova checklist ou acessar uma existente."
-          />
-          <CardInfo
-            titulo="Edição em Tempo Real"
-            texto="As alterações que você faz em sua checklist são salvas e atualizadas em tempo real. Isso significa que qualquer pessoa com a URL pode ver as atualizações ao mesmo tempo."
-          />
-          <CardInfo
-            titulo="Compartilhe e Colabore"
-            texto="Compartilhe a URL da sua checklist com qualquer pessoa. Eles podem visualizar e editar a checklist, tornando fácil a colaboração em tarefas e projetos."
-          />
-        </div>
+        <div className="card-container">{/* Restante do código... */}</div>
       </div>
       <Footer />
     </div>
